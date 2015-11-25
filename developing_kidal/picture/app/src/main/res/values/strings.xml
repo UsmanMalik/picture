@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">picture</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_card_element">CardElement</string>
+    <string name="title_activity_video_link">VideoLink</string>
+    <string name="title_activity_play_video">PlayVideo</string>
+    <string name="title_activity_splash_screen">SplashScreen</string>
+    <string name="banner_ad_unit_id">ca-app-pub-1906008257764668/8335678239</string>
+    <string name="inter_ad_unit_id">ca-app-pub-1906008257764668/5124859834</string>
+</resources>

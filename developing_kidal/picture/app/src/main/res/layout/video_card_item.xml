@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
+    android:layout_margin="5dp"
+    android:orientation="horizontal"
+    card_view:cardCornerRadius="5dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/video_path"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/d"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:id="@+id/video_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/video_path"
+            android:padding="5dp"
+            android:text="This will be a dummy video. Please make sure you like this.."
+            android:textSize="15sp"
+            android:layout_alignLeft="@+id/video_path"
+            android:layout_alignTop="@+id/video_path"
+            android:layout_alignRight="@+id/video_path"
+            android:layout_alignBottom="@+id/video_path"
+            android:layout_margin="1dp"
+            android:gravity="bottom"
+            android:layout_marginBottom="2dp"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/video_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/video_path"
+            android:text="age"
+            android:paddingTop="6dp"
+            android:textSize="15dp"/>
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
+
+
