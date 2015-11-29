@@ -399,6 +399,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return totalBoxes;
     }
 
+    public void truncateTables(){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Log.e("Deleting Records", "Truncate table");
+
+        db.execSQL("delete from "+ TABLE_CATEGORY);
+        db.execSQL("delete from "+ TABLE_BOX);
+        db.close();
+    }
+
 
 
 

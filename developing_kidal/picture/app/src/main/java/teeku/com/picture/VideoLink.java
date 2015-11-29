@@ -126,6 +126,7 @@ public class VideoLink extends AppCompatActivity {
                         Toast.makeText(context, position + "", Toast.LENGTH_LONG).show();
                         Intent i = new Intent(VideoLink.this, PlayVideo.class);
                         i.putExtra("video_key", item.getImage_path());
+                        i.putExtra("video_title", item.getTitle());
                         VideoLink.this.startActivity(i);
 
                     }
@@ -133,14 +134,14 @@ public class VideoLink extends AppCompatActivity {
         );
 
 
-//
+
 //        String videoHtml;
 //        webView = (WebView) findViewById(R.id.webView);
 //        videoHtml = "<iframe frameborder=\"0\" width=\"480\" height=\"270\" src=\"http://www.dailymotion.com/embed/video/xznb64\"></iframe><br /><a href=\"http://www.dailymotion.com/video/xznb64_leyla-ile-mecnun-dan-evlilik-programlarina-gonderme_news\" target=\"_blank\">Leyla İle Mecnun&#039;dan Evlilik Programlarına...</a> <i>ile  <a href=\"http://www.dailymotion.com/trthaber\" target=\"_blank\">trthaber</a></i>";
 //        webView.loadData(videoHtml, "text/html", "UTF-8");
 //        webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
 //        webView.getSettings().setJavaScriptEnabled(true);
-       // webView.getSettings().setPluginsEnabled(true);
+        // webView.getSettings().setPluginsEnabled(true);
 //        VideoView vidView = (VideoView)findViewById(R.id.myVideo);
 //        String vidAddress = "https://archive.org/download/ksnn_compilation_master_the_internet/ksnn_compilation_master_the_internet_512kb.mp4";
 //        Uri vidUri = Uri.parse(vidAddress);
@@ -149,7 +150,8 @@ public class VideoLink extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_video_link, menu);
+//        getMenuInflater().inflate(R.menu.menu_video_link, menu);
+        setTitle("Select to watch video");
         return true;
     }
 

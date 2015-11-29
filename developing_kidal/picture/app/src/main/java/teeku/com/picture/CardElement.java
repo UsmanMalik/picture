@@ -3,6 +3,8 @@ package teeku.com.picture;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -53,6 +55,20 @@ public class CardElement extends AppCompatActivity {
         Log.e("I am in Card", "start");
         setContentView(R.layout.card_list);
         context = getApplicationContext();
+
+
+
+        ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+
+        if (mWifi.isConnected()) {
+            // get fresh data from parse
+            db.truncateTables();
+            new RemoteDataTask().execute();
+
+        }
+
+
 
         // database check
         int countCategory = db.getCategoryCount();
@@ -115,29 +131,30 @@ public class CardElement extends AppCompatActivity {
 //        categoryList.add(second);
 //        categoryList.add(second);
 
+        setAdapter();
 
-        rv = (RecyclerView) findViewById(R.id.list);
-        rv.setLayoutManager(new LinearLayoutManager(this));
-        rv.setItemAnimator(new DefaultItemAnimator());
-
-        adapter = new CustomListAdapter(categoryList, R.layout.activity_card_element, context);
-        rv.setAdapter(adapter);
-
-        rv.addOnItemTouchListener(
-                new RecyclerItemClickListener(context, new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, int position) {
-                        // do whatever
-                        Toast.makeText(context, position + "", Toast.LENGTH_LONG).show();
-                        Item item = categoryList.get(position);
-                        Log.e("Clicked: ", item.getTitle());
-
-                        Intent i = new Intent(CardElement.this, VideoLink.class);
-                        i.putExtra("item_id", item.getId());
-                        CardElement.this.startActivity(i);
-                    }
-                })
-        );
+//        rv = (RecyclerView) findViewById(R.id.list);
+//        rv.setLayoutManager(new LinearLayoutManager(this));
+//        rv.setItemAnimator(new DefaultItemAnimator());
+//
+//        adapter = new CustomListAdapter(categoryList, R.layout.activity_card_element, context);
+//        rv.setAdapter(adapter);
+//
+//        rv.addOnItemTouchListener(
+//                new RecyclerItemClickListener(context, new RecyclerItemClickListener.OnItemClickListener() {
+//                    @Override
+//                    public void onItemClick(View view, int position) {
+//                        // do whatever
+//                        Toast.makeText(context, position + "", Toast.LENGTH_LONG).show();
+//                        Item item = categoryList.get(position);
+//                        Log.e("Clicked: ", item.getTitle());
+//
+//                        Intent i = new Intent(CardElement.this, VideoLink.class);
+//                        i.putExtra("item_id", item.getId());
+//                        CardElement.this.startActivity(i);
+//                    }
+//                })
+//        );
 
 
 //
@@ -165,6 +182,34 @@ public class CardElement extends AppCompatActivity {
 
     }
 
+    public void setAdapter(){
+
+        rv = (RecyclerView) findViewById(R.id.list);
+        rv.setLayoutManager(new LinearLayoutManager(this));
+        rv.setItemAnimator(new DefaultItemAnimator());
+
+        adapter = new CustomListAdapter(categoryList, R.layout.activity_card_element, context);
+        rv.setAdapter(adapter);
+
+        rv.addOnItemTouchListener(
+                new RecyclerItemClickListener(context, new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        // do whatever
+                        Toast.makeText(context, position + "", Toast.LENGTH_LONG).show();
+                        Item item = categoryList.get(position);
+                        Log.e("Clicked: ", item.getTitle());
+
+                        Intent i = new Intent(CardElement.this, VideoLink.class);
+                        i.putExtra("item_id", item.getId());
+                        CardElement.this.startActivity(i);
+                    }
+                })
+        );
+
+    }
+
+
     // RemoteDataTask AsyncTask
     private class RemoteDataTask extends AsyncTask<Void, Void, Void> {
         @Override
@@ -188,10 +233,11 @@ public class CardElement extends AppCompatActivity {
             try {
                 // Locate the class table named "SamsungPhones" in Parse.com
                 ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(
-                        "beautdata");
+                        "beautdata").addAscendingOrder("createdAt");
                 // Locate the column named "position" in Parse.com and order list
                 // by ascending
-                query.orderByAscending("position");
+//                query.addAscendingOrder("createdAt");
+
                 ob = query.find();
                 Log.e("Query result: ", ob.toString());
                 for (ParseObject country : ob) {
@@ -234,8 +280,9 @@ public class CardElement extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void result) {
             mProgressDialog.dismiss();
-            finish();
-            startActivity(getIntent());
+//            finish();
+//            startActivity(getIntent());
+            setAdapter();
         }
     }
 
@@ -243,7 +290,8 @@ public class CardElement extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_card_element, menu);
+//        getMenuInflater().inflate(R.menu.menu_card_element, menu);
+        setTitle("Browse latest fashion..");
         return true;
     }
 
