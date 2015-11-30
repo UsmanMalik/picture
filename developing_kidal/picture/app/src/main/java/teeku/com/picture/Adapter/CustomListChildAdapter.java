@@ -37,7 +37,7 @@ public class CustomListChildAdapter extends RecyclerView.Adapter<CustomListChild
 
 
         // Set colors array
-        TypedArray ta = mContext.getResources().obtainTypedArray(R.array.colors);
+        TypedArray ta = mContext.getResources().obtainTypedArray(R.array.colorschild);
         ta.length();
 
         colors = new int[ta.length()];

@@ -8,5 +8,15 @@
         <item>#DD1C1A</item>
     </array>
 
+    <array name="colorschild">
+        <item>#1BE7FF</item>
+        <item>#6EEB83</item>
+        <item>#E4FF1A</item>
+        <item>#E8AA14</item>
+        <item>#FF5714</item>
+    </array>
+
+
+
 
 </resources>
